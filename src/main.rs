@@ -1,4 +1,4 @@
-use std::fmt::Display;
+use std::{fmt::Display, io::Write};
 
 struct Question {
     text: &'static str,
@@ -109,7 +109,8 @@ fn print_screen(question: &Question) {
     print!("\x1B[2J\x1B[1;1H"); // Clear the screen and put cursor at (1,1)
     print!("{}", question);
     println!("0. Afsluiten");
-    println!("> ");
+    print!("> ");
+    std::io::stdout().flush().expect("Unable to flush stdout");
 }
 
 fn main() {
